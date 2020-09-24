@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node*prev;
+    struct Node*next;
+};
+
+struct Node*head;
+
+struct Node*getnewnode(int x)
+{
+    struct Node*temp= (struct Node*)malloc(sizeof(struct Node));
+    temp->data=x;
+    temp->next=NULL;
+    temp->prev=NULL;
+    return temp;
+    
+}
+void Insert(int x)
+{
+    struct Node*temp= getnewnode(x);
+    if(head == NULL) 
+    {
+		head = temp;
+		return;
+	}
+    struct Node*temp1=head;
+    while(temp1->next!=NULL)
+    {
+        temp1=temp1->next;
+    }
+    temp1->next=temp;
+    temp->prev=temp1;
+}
+
+void reverse()
+{
+    struct Node *current,*prev,*next;
+    current=head;
+    prev=NULL;
+    while(current!=NULL)
+    {
+        current->prev=current->next;
+        next=current->next;
+        current->next=prev;
+        prev=current;
+        current=next;
+    }
+    head=prev;
+}
+
+
+void print()
+{
+    struct Node* temp=head;
+    printf("\nList is : ");
+    while(temp!=NULL)
+    {
+        printf("%d\t",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+
+
+int main()
+{
+    head=NULL;
+    int n,i,x;
+    //enter n
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        //enter elements
+        scanf("%d",&x);
+        Insert(x);
+        print();
+    }
+    reverse();
+    printf("\n After reversal:\n");
+    print();
+    return 0;
+}
