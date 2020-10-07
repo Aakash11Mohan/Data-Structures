@@ -86,6 +86,7 @@ jump: printf("Enter your Choice 1)push 2)pop 3)top\n");
 
             default:
                     printf("Enter the proper choices:\n");
+                    Print();
       }
 
     int c;
