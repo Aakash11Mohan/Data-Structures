@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+struct Node *top;
+
+void PUSH(int x)
+{
+    struct Node *temp= (struct Node*)malloc(sizeof(struct Node));
+    temp->data=x;
+    temp->next=top;
+    top=temp;
+}
+
+void POP()
+{
+    struct Node *temp=top;
+    if(top==NULL)
+    {
+        printf("Under flow\n");
+    }
+    else
+    {
+        printf("Poped item is:%d\n",top->data);
+        temp=top;
+        top=top->next;
+        free(temp);
+    }
+}
+
+void TOP()
+{
+    if(top==NULL)
+    {
+        printf("Stack Empty\n");
+    }
+    else
+    {
+        printf("Top element:%d\n",top->data);
+    }
+}
+
+void Print()
+{
+    struct Node *temp=top;
+    if(top==NULL)
+    {
+        printf("Nothing to print");
+    }
+    else
+    {
+        printf("List is:\n");
+        while(temp!=NULL)
+        {
+            printf("%d",temp->data);
+            temp=temp->next;
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+    top=NULL;
+    PUSH(3);
+    PUSH(2);
+    PUSH(1);
+    Print();
+    TOP();
+    POP();
+    TOP();
+    Print();
+    return 0;
+}
