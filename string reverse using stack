@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define size 101
+
+char stack[size];
+int top=-1;
+
+void PUSH(char ch)
+{
+
+    if(top==size-1)
+    {
+        printf("Overflow\n");
+    }
+    else
+    {
+        stack[++top]=ch;
+    }
+}
+
+char POP()
+{
+    char popitem;
+    if(top==-1)
+    {
+        printf("underflow\n");
+    }
+    else
+    {
+        popitem = stack[top];
+        top--;
+    }
+    return popitem;
+}
+
+void TOP()
+{
+    if(top==-1)
+    {
+        printf("Stack Empty\n");
+    }
+    else
+    {
+        printf("%d\n",stack[top]);
+    }
+}
+
+
+int main()
+{
+    char c[size];
+    printf("Enter the String:\n");
+    gets(c);
+    int i;
+    for(i=0;i<strlen(c);i++)
+    {
+        PUSH(c[i]);
+    }
+    for(i=0;i<strlen(c);i++)
+    {
+        c[i]=POP();
+    }
+    printf("After String Reverse:%s\n",c);
+    return 0;
+}
