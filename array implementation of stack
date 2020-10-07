@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define size 5
+
+int stack[size];
+int top=-1;
+
+void PUSH()
+{
+    int data;
+    printf("Enter the data:\n");
+    scanf("%d",&data);
+    if(top==size-1)
+    {
+        printf("Overflow\n");
+    }
+    else
+    {
+        stack[++top]=data;
+    }
+}
+
+void POP()
+{
+    int popitem;
+    if(top==-1)
+    {
+        printf("underflow\n");
+    }
+    else
+    {
+        popitem = stack[top];
+        top--;
+    }
+    printf("%d\n",popitem);
+}
+
+void TOP()
+{
+    if(top==-1)
+    {
+        printf("Stack Empty\n");
+    }
+    else
+    {
+        printf("%d\n",stack[top]);
+    }
+}
+
+void Print()
+{
+    if(top==-1)
+    {
+        printf("Nothing to print");
+    }
+    else
+    {
+        printf("List is:\n");
+        for(int i=0;i<=top;i++)
+        {
+            printf("%d",stack[i]);
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+      int a;
+      printf("------------Implementation of STACK------------\n");
+jump: printf("Enter your Choice 1)push 2)pop 3)top\n");
+      scanf("%d",&a);
+      switch(a)
+      {
+            case 1:
+                    PUSH();
+                    break;
+
+            case 2:
+                    POP();
+                    break;
+
+            case 3:
+                    TOP();
+                    break;
+
+            default:
+                    printf("Enter the proper choices:\n");
+      }
+
+    int c;
+    printf("Do you want to continue? 1(Yes) or 0(No) ?\n");
+    scanf("%d",&c);
+    if(c==1)
+    {
+        goto jump;
+    }
+    else if(c==0)
+    {
+        Print();
+    }
+
+    return 0;
+}
