@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define size 5
+
+int queue[size];
+int front=-1,rear=-1;
+
+void Enqueue()
+{
+    int data;
+    printf("Enter the data:\n");
+    scanf("%d",&data);
+    if(rear==size-1)
+    {
+        printf("Overflow\n");
+    }
+    else if(front==-1 && rear==-1)
+    {
+        front=rear=0;
+        queue[rear]=data;
+    }
+    else
+    {
+        queue[++rear]=data;
+    }
+}
+
+void Dequeue()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("underflow\n");
+    }
+    else if(front==rear)
+    {
+        printf("Dequeued item is:%d\n",queue[front]);
+        front=rear=-1;
+    }
+    else
+    {
+        printf("Dequeued item is:%d\n",queue[front]);
+        front++;
+    }
+}
+
+void Peek()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("Queue is Empty\n");
+    }
+    else
+    {
+        printf("First item is:%d\n",queue[front]);
+    }
+}
+
+void Print()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("Nothing to print\n");
+    }
+    else
+    {
+        int i;
+        printf("Queue is:\n");
+        for(i=front;i<=rear;i++)
+        {
+            printf("%d\t",queue[i]);
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+      int a;
+      printf("------------Implementation of QUEUE------------\n");
+jump: printf("Enter your Choice 1)Enqueue 2)Dequeue 3)Peek\n");
+      scanf("%d",&a);
+      switch(a)
+      {
+            case 1:
+                    Enqueue();
+                    break;
+
+            case 2:
+                    Dequeue();
+                    break;
+
+            case 3:
+                    Peek();
+                    break;
+
+            default:
+                    printf("Enter the proper choices:\n");
+                    Print();
+      }
+
+    int c;
+    printf("Do you want to continue? 1(Yes) or 0(No) ?\n");
+    scanf("%d",&c);
+    if(c==1)
+    {
+        goto jump;
+    }
+    else if(c==0)
+    {
+        Print();
+    }
+
+    return 0;
+}
