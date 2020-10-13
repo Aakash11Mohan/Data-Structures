@@ -91,6 +91,5 @@ int main()
     }
     InsertatN(8,3);
     print();
-    printf("\nIn Reverse direction:\n");
     return 0;
 }
